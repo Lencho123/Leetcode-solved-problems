@@ -39,9 +39,10 @@ class Solution:
                 if node.children[i] and node.children[i].is_end:
                     dfs(node.children[i], cand+chr(i + ord("a")))
         
-        for i in range(26):
-            child = self.root.children[i]
-            if child and child.is_end:
-                dfs(child, chr(i+ord("a")))
+        # for i in range(26):
+        #     child = self.root.children[i]
+        #     if child and child.is_end:
+        #         dfs(child, chr(i+ord("a")))
+        dfs(self.root, "")
 
         return longest
