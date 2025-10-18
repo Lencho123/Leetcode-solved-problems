@@ -1,21 +1,18 @@
 class Solution:
     def canArrange(self, arr: List[int], k: int) -> bool:
-        isTaken = [False for i in range(len(arr))]
+        remain_ind = defaultdict(list)
 
-        remainders = defaultdict(list)
-        pairs = []
         for i,num in enumerate(arr):
-            x = num%k
-            y = (k - x)%k
-            if y in remainders and len(remainders[y]):
-                ind = remainders[y].pop()
-                isTaken[ind] = True
-                isTaken[i] = True
-                pairs.append((arr[i],arr[ind]))
+            r = num%k
+            needed = k-r
+            if needed == k:
+                needed = 0
+            if needed in remain_ind and remain_ind[needed]:
+                remain_ind[needed].pop()
             else:
-                remainders[x].append(i)
-        
-        
-        if sum(isTaken) == len(arr):
-            return True
-        return False
+                remain_ind[r].append(i)
+
+        for r in remain_ind:
+            if remain_ind[r]:
+                return False
+        return True
