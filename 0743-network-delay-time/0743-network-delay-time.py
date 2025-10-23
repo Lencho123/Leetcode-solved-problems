@@ -14,6 +14,7 @@ class Solution:
 
         while heap:
             weigh,fro_node = heapq.heappop(heap)
+
             if fro_node in visited:
                 continue
             visited.add(fro_node)
@@ -22,7 +23,6 @@ class Solution:
                 if distance[nei] > distance[fro_node] + wei:
                     distance[nei] = distance[fro_node] + wei
                 
-                if nei not in visited:
-                    heapq.heappush(heap,[distance[nei],nei])
+                heapq.heappush(heap,[distance[nei],nei])
           
         return max(distance.values()) if max(distance.values()) < float("inf") else -1
