@@ -22,6 +22,7 @@ class Solution:
             ptr-=1
             mid_in = in_inds[post]
 
+            # We need to first construct right subtree sinc our postorder give us it first unlike preorder
             root.right = construct(mid_in+1, end)
             root.left = construct(start, mid_in-1)
 
