@@ -5,7 +5,7 @@ class Solution:
         res = float("inf")
 
         while l <= r:
-            m = l+(r-l)//2
+            m = (l+r)//2
             # check sorted part
             if nums[m] < nums[r]: #this is sorted 
                 r = m-1
