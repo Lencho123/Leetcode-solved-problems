@@ -1,14 +1,27 @@
 class Solution:
     def search(self, nums: List[int], target: int) -> bool:
-        # Let me try devide and conquire
+        l,r = 0,len(nums)-1
 
-        def dfs(i,j):
-            if i == j:
-                return nums[i] == target
-            if i >= j:
-                return False
+        while l <= r:
+            m = l + (r-l)//2
+
+            if nums[m] == target:
+                return True
             
-            left = dfs(i,i+(j-i)//2)
-            right = dfs((i+(j-i)//2)+1, j)
-            return left or right
-        return dfs(0, len(nums)-1)
+            # check if duplicate created vague
+            if nums[l] <= nums[m] <= nums[r]:
+                if nums[l] == target:
+                    return True
+                l+=1
+            # do same as it has no duplicate
+            elif nums[l] <= nums[m]:
+                if nums[l] <= target <= nums[m]:
+                    r = m-1
+                else:
+                    l = m+1
+            else:
+                if nums[m] <= target <= nums[r]:
+                    l = m+1
+                else:
+                    r = m-1
+        return False
