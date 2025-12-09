@@ -7,18 +7,39 @@ class Solution:
 
     def __init__(self, head: Optional[ListNode]):
         self.head = head
-        self.dct = {}#ind:val
-        i = 0
-        while self.head:
-            self.dct[i] = self.head.val
-            i+=1
-            self.head = self.head.next
+        self.length = 0
+        cur = self.head
+        while cur:
+            self.length+=1
+            cur = cur.next
+
+
+        # self.dct = {}#ind:val
+        # dummy = ListNode(head)
+        # prev = dummy
+        # i = 0
+        # while head:
+        #     prev.next = None
+        #     del prev
+        #     prev = head 
+        #     self.dct[i] = head.val
+        #     i+=1
+        #     head = head.next
+
         
 
     def getRandom(self) -> int:
-        l = len(self.dct)
+        l = self.length
         ind = random.randrange(0,l,1)
-        return self.dct[ind]
+
+        i = 0 
+        cur = self.head
+        while ind > 0:
+            cur = cur.next
+            ind-=1
+        return cur.val
+
+        # return self.dct[ind]
 
 
 # Your Solution object will be instantiated and called as such:
