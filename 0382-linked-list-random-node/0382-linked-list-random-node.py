@@ -7,13 +7,17 @@ class Solution:
 
     def __init__(self, head: Optional[ListNode]):
         self.head = head
-        self.length = 0
-        cur = self.head
-        while cur:
-            self.length+=1
-            cur = cur.next
 
+        
+        
+        # DOUBLE LOOP THROUGH LIST
+        # cur = self.head
+        # while cur:
+        #     self.length+=1
+        #     cur = cur.next
+        # self.length = 0
 
+        # USING O(N) SPACE AND O(1) TIME
         # self.dct = {}#ind:val
         # dummy = ListNode(head)
         # prev = dummy
@@ -29,16 +33,31 @@ class Solution:
         
 
     def getRandom(self) -> int:
-        l = self.length
-        ind = random.randrange(0,l,1)
+        #DOUBLE LOOPING
+        # l = self.length
+        # ind = random.randrange(0,l,1)
+        # i = 0 
+        # cur = self.head
+        # while ind > 0:
+        #     cur = cur.next
+        #     ind-=1
+        # return cur.val
 
-        i = 0 
+        # WITHOUT SINGLE LOOPING USING RESERIOR ALGORITHM
+        random_val = -1
+        cur_ind = 1
+        count_node = 0
         cur = self.head
-        while ind > 0:
+        while cur:
+            count_node+=1
+            rand_ind = random.randrange(1,count_node+1)
+            if rand_ind == cur_ind:
+                random_val = cur.val
+            cur_ind = rand_ind
             cur = cur.next
-            ind-=1
-        return cur.val
+        return random_val
 
+        # USING EXTRA SPACE AND CONSTANT TIME
         # return self.dct[ind]
 
 
