@@ -3,20 +3,22 @@ class Solution:
         """
         Do not return anything, modify arr in-place instead.
         """
-        count=0
-        right=0
-        for i in arr:
-            if i==0:
-                count+=1
+        count = 0
+        for a in arr:
+            count+= a == 0
+        
+        l = len(arr)-1
+        r=len(arr)+count-1
 
-        while right < (len(arr)):
-            if arr[right]==0:
-                arr.insert(right+1,0)
-                right+=2
+        while l>=0:
+            if arr[l] == 0:
+                if r < len(arr):
+                    arr[r] = 0
+                if r-1 < len(arr):
+                    arr[r-1] = 0
+                r-=2
             else:
-                right+=1
-
-        for i in range(count):
-            arr.pop()
-        print(arr)
-        print(count)
+                if r<len(arr):
+                    arr[r] = arr[l]
+                r-=1
+            l-=1
