@@ -1,8 +1,5 @@
 class Solution:
-    def maxPoints(self, points: List[List[int]]) -> int:
-        
-        points.sort()
-        
+    def maxPoints(self, points: List[List[int]]) -> int:        
         res = 0
         for i in range(len(points)):
             counts = defaultdict(int)
