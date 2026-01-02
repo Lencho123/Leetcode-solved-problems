@@ -6,4 +6,3 @@ class Solution:
         for c in count:
             if count[c] == l/2:
                 return c
-            
