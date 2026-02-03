@@ -21,10 +21,10 @@ class Solution:
                 break
         
         for i in range(p,q):
-            if nums[i+1] >= nums[i]:
+            if nums[i+1] > nums[i]:
                 return False
         
         if p == 0 or q == n-1:
             return False
-
+            
         return True
