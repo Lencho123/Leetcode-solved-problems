@@ -1,14 +1,15 @@
 class Solution:
     def minRemoval(self, nums: List[int], k: int) -> int:
-        min_heap = nums[:]
-        max_heap = [-nums[i] for i in range(len(nums))]
+        n = len(nums)
+        nums.sort()
+        res = float("inf")
 
-        heapq.heapify(min_heap)
-        heapq.heapify(max_heap)
-
-        count = 0
-        while True:
-            if -max_heap[0] <= min_heap[0]*k:
-                return count
-            count+=1
-            heapq.heappop(max_heap)
+        l,r = 0,0
+        while r < n:
+            if nums[l]*k >= nums[r]:
+                r+=1
+                res = min(l+n-r,res)
+            else:
+                l+=1
+        return res
+            
