@@ -17,25 +17,16 @@ class Solution:
         sorted_list = []
         inorderTraverse(root)
 
-        def balanced(new_root, l):
-            m = len(l)//2
+        def build_balanced_tree(l,r):
+            if l > r:
+                return None
+            
+            m = (l+r)//2
+            new_root = TreeNode(sorted_list[m])
+            new_root.left = build_balanced_tree(l,m-1)
+            new_root.right = build_balanced_tree(m+1,r)
 
-            left = l[:m]
-            right = l[m+1:]
-            lm = len(left)//2
-            rm = len(right)//2
+            return new_root
 
-            if len(l) == 0:
-                return
-            if len(left)>0:
-                new_root.left = TreeNode(left[lm])
-                balanced(new_root.left, left)
 
-            if len(right)>0:
-                new_root.right = TreeNode(right[rm])
-                balanced(new_root.right, right)
-        
-        new_root = TreeNode(sorted_list[len(sorted_list)//2])
-        balanced(new_root,sorted_list)
-
-        return new_root
+        return build_balanced_tree(0,len(sorted_list)-1)
