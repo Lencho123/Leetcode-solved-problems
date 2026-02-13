@@ -40,8 +40,6 @@ class Solution:
                     run_sum = 0
                 if run_sum in pre_sum:
                     ans = max(ans,i-pre_sum[run_sum])
-                else:
-                    pre_sum[run_sum] = i
             return ans
 
         res = max(res,solveXY("a","b"),solveXY("a","c"),solveXY("c","b"))
