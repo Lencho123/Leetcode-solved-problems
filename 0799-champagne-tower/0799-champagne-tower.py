@@ -9,8 +9,8 @@ class Solution:
         
         for r in range(1,query_row+1):
             for c in range(len(dp[r])):
-                overflow_left = (dp[r-1][c]-1)/2 if 0 <= c < len(dp[r-1]) and dp[r-1][c] > 1 else 0
-                overflow_right = (dp[r-1][c-1]-1)/2 if 0 <= c-1 < len(dp[r-1]) and dp[r-1][c-1] > 1 else 0
+                overflow_left = (dp[r-1][c]-1)/2 if c < len(dp[r-1]) and dp[r-1][c] > 1 else 0
+                overflow_right = (dp[r-1][c-1]-1)/2 if 0 <= c-1  and dp[r-1][c-1] > 1 else 0
 
                 dp[r][c] = overflow_left + overflow_right
 
